@@ -9,15 +9,19 @@ public class ItemData : ScriptableObject
     public Sprite itemSprite;
     public int attackPower;
     public int defense;
+    public int health;
+    public int criticalChance;
     public bool isEquipped;
 
     // 아이템의 데이터를 초기화할 메서드
-    public void Initialize(string name, Sprite sprite, int atk, int def)
+    public void Initialize(string name, Sprite sprite, int atk, int def, int heal, int critical)
     {
         itemName = name;
         itemSprite = sprite;
         attackPower = atk;
         defense = def;
+        health = heal;
+        criticalChance = critical;
         isEquipped = false;
     }
 }

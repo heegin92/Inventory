@@ -18,9 +18,11 @@ public class UIStatus : MonoBehaviour
     // GameManager에서 호출될 메서드: 캐릭터 정보를 받아서 UI에 표시
     public void SetCharacterData(Character character)
     {
+        if (character == null) return;
+        
         attackText.text = character.AttackPower.ToString();
         defenseText.text = character.Defense.ToString();
         healthText.text = character.Health.ToString();
-        criticalChanceText.text = character.CriticalChance.ToString();
+        criticalChanceText.text = character.CriticalChance.ToString() + "%";
     }
 }

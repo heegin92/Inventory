@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 using static UnityEditor.Progress;
 
 public class Character
@@ -14,6 +13,10 @@ public class Character
     public int Health { get; private set; }
     public int CriticalChance { get; private set; }
     public int Gold { get; private set; }
+    private int baseAttackPower;
+    private int baseDefense;
+    private int baseHealth;
+    private int baseCriticalChance;
 
     // 아이템 인벤토리 리스트 추가
     public List<ItemData> Inventory { get; private set; }
@@ -23,14 +26,25 @@ public class Character
     {
         CharacterName = name;
         Level = level;
+
+        // Inventory 리스트를 가장 먼저 초기화합니다.
+        Inventory = new List<ItemData>();
+
         AttackPower = attack;
         Defense = defense;
         Health = health;
         CriticalChance = critical;
+        Gold = gold;
 
-        Inventory = new List<ItemData>();
+        // 기본 스탯을 저장합니다.
+        baseAttackPower = attack;
+        baseDefense = defense;
+        baseHealth = health;
+        baseCriticalChance = critical;
 
-        Gold = gold; // 골드 초기화
+        // Inventory가 초기화된 후 RecalculateStats를 호출합니다.
+        RecalculateStats();
+
     }
 
     // 아이템 추가 메서드
@@ -51,11 +65,13 @@ public class Character
                 break;
             }
         }
-        Debug.Log("Equip() 함수 호출됨: " + item.itemName);
         // 새로운 아이템 장착
         item.isEquipped = true;
         AttackPower += item.attackPower;
         Defense += item.defense;
+        Health += item.health;
+        CriticalChance += item.criticalChance;
+        RecalculateStats();
 
 
     }
@@ -63,9 +79,26 @@ public class Character
     // 아이템 해제 메서드
     public void UnEquip(ItemData item)
     {
-        Debug.Log("UnEquip() 함수 호출됨: " + item.itemName);
         item.isEquipped = false;
-        AttackPower -= item.attackPower;
-        Defense -= item.defense;
+        RecalculateStats();
+    }
+
+    public void RecalculateStats()
+    {
+        // 스탯을 기본값으로 초기화
+        AttackPower = baseAttackPower;
+        Defense = baseDefense;
+
+        // 장착된 아이템의 스탯을 모두 더함
+        foreach (var item in Inventory)
+        {
+            if (item.isEquipped)
+            {
+                AttackPower += item.attackPower;
+                Defense += item.defense;
+                Health += item.health;
+                CriticalChance += item.criticalChance;
+            }
+        }
     }
 }

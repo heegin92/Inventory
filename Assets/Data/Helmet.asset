@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uD5EC\uBA67"
   itemSprite: {fileID: 21300000, guid: d40e6cdb4fe723c4dadc48361841f946, type: 3}
-  itemValue: 6
+  attackPower: 0
+  defense: 20
+  isEquipped: 0
