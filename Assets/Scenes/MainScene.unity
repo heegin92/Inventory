@@ -2254,7 +2254,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f79990ea44a59ae4d99561de57b71608, type: 2}
   m_sharedMaterial: {fileID: 5428160484219144379, guid: f79990ea44a59ae4d99561de57b71608, type: 2}
@@ -5813,6 +5813,7 @@ MonoBehaviour:
   backButton: {fileID: 130292560}
   uiSlotPrefab: {fileID: 3237844639876684425, guid: 9a466e8109e0a5a43b968ec36a7ac207, type: 3}
   slotsParent: {fileID: 135947771}
+  equipNumText: {fileID: 523893449}
   inventorySize: 15
 --- !u!1 &1947532845
 GameObject:
