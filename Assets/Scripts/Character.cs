@@ -13,6 +13,8 @@ public class Character
     public int Health { get; private set; }
     public int CriticalChance { get; private set; }
     public int Gold { get; private set; }
+    public int EquippedCount { get; private set; }
+
     private int baseAttackPower;
     private int baseDefense;
     private int baseHealth;
@@ -56,15 +58,6 @@ public class Character
     // 아이템 장착 메서드
     public void Equip(ItemData item)
     {
-        // 이미 장착된 아이템이 있다면 해제
-        foreach (var invItem in Inventory)
-        {
-            if (invItem.isEquipped)
-            {
-                UnEquip(invItem);
-                break;
-            }
-        }
         // 새로운 아이템 장착
         item.isEquipped = true;
         AttackPower += item.attackPower;
@@ -88,6 +81,9 @@ public class Character
         // 스탯을 기본값으로 초기화
         AttackPower = baseAttackPower;
         Defense = baseDefense;
+        Health = baseHealth;
+        CriticalChance = baseCriticalChance;
+        EquippedCount = 0; // 카운트 초기화
 
         // 장착된 아이템의 스탯을 모두 더함
         foreach (var item in Inventory)
@@ -98,6 +94,7 @@ public class Character
                 Defense += item.defense;
                 Health += item.health;
                 CriticalChance += item.criticalChance;
+                EquippedCount++; // 장착 아이템 개수 증가
             }
         }
     }

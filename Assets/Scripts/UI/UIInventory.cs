@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIInventory : MonoBehaviour
 {
     [SerializeField] private Button backButton;
     [SerializeField] private UISlot uiSlotPrefab;
     [SerializeField] private Transform slotsParent; // 슬롯의 부모(Content) 추가
+    [SerializeField] private TextMeshProUGUI equipNumText;
 
     [SerializeField] private int inventorySize = 18;
 
@@ -94,16 +96,27 @@ public class UIInventory : MonoBehaviour
 
     public void RefreshAllSlots()
     {
+        int equippedCount = 0;
+
         for (int i = 0; i < uiSlots.Count; i++)
         {
             if (i < GameManager.Instance.Player.Inventory.Count)
             {
-                uiSlots[i].SetItem(GameManager.Instance.Player.Inventory[i]);
+                ItemData currentItem = GameManager.Instance.Player.Inventory[i];
+                uiSlots[i].SetItem(currentItem);
+
+                // 장착된 아이템이면 카운트 증가
+                if (currentItem.isEquipped)
+                {
+                    equippedCount++;
+                }
             }
             else
             {
                 uiSlots[i].SetItem(null);
             }
+
+            equipNumText.text = equippedCount.ToString();
         }
     }
 
