@@ -92,13 +92,20 @@ public class UIInventory : MonoBehaviour
         UIManager.Instance.ShowStatusUI();
     }
 
-    private void RefreshAllSlots()
+    public void RefreshAllSlots()
     {
-        // 현재 인벤토리에 있는 모든 슬롯을 순회하며 UI를 새로고침합니다.
         for (int i = 0; i < uiSlots.Count; i++)
         {
-            uiSlots[i].SetItem(GameManager.Instance.Player.Inventory[i]);
+            if (i < GameManager.Instance.Player.Inventory.Count)
+            {
+                uiSlots[i].SetItem(GameManager.Instance.Player.Inventory[i]);
+            }
+            else
+            {
+                uiSlots[i].SetItem(null);
+            }
         }
     }
+
 
 }

@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     public Button backButtonInStatus; // Status_In 패널에 있는 BackButton
     public Button backButtonInInventory; // Inventory_In 패널에 있는 BackButton
 
-    public static UIManager Instance;
+    public static UIManager Instance { get; private set; }
 
     [SerializeField] private UIMainMenu uiMainMenu;
     [SerializeField] private UIStatus uiStatus;
@@ -95,5 +95,14 @@ public class UIManager : MonoBehaviour
         uiInventory.gameObject.SetActive(true);
 
         uiInventory.Initialize();
+    }
+    public UIInventory GetInventoryUI()
+    {
+        return uiInventory;
+    }
+
+    public UIStatus GetStatusUI()
+    {
+        return uiStatus;
     }
 }

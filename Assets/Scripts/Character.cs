@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 using static UnityEditor.Progress;
 
 public class Character
@@ -50,16 +51,19 @@ public class Character
                 break;
             }
         }
-
+        Debug.Log("Equip() 함수 호출됨: " + item.itemName);
         // 새로운 아이템 장착
         item.isEquipped = true;
         AttackPower += item.attackPower;
         Defense += item.defense;
+
+
     }
 
     // 아이템 해제 메서드
     public void UnEquip(ItemData item)
     {
+        Debug.Log("UnEquip() 함수 호출됨: " + item.itemName);
         item.isEquipped = false;
         AttackPower -= item.attackPower;
         Defense -= item.defense;
