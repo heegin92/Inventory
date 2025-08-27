@@ -5,7 +5,6 @@ using TMPro;
 public class UISlot : MonoBehaviour
 {
     [SerializeField] private Image itemImage;
-    //[SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private Sprite emptySlotSprite;
 
     // 장착 상태를 표시할 UI 이미지
@@ -17,17 +16,6 @@ public class UISlot : MonoBehaviour
     public ItemData itemData;
     private Button slotButton;
 
-    private void Awake()
-    {
-        // Button 컴포넌트가 있는지 확인하고 참조
-        /*slotButton = GetComponent<Button>();
-        if (slotButton != null)
-        {
-            slotButton.onClick.AddListener(OnSlotClicked);
-        }*/
-    }
-
-    // SetItem() 메서드: 외부에서 ItemData를 받아와 할당
     public void SetItem(ItemData data)
     {
         itemData = data;
@@ -41,7 +29,6 @@ public class UISlot : MonoBehaviour
         {
             itemImage.sprite = itemData.itemSprite;
             itemImage.gameObject.SetActive(true);
-            //itemNameText.text = itemData.itemName;
 
             // 아이템이 장착되었는지 확인하고 'Equip' 이미지 활성화/비활성화
             if (itemData.isEquipped)
@@ -58,7 +45,6 @@ public class UISlot : MonoBehaviour
         {
             itemImage.sprite = emptySlotSprite;
             itemImage.gameObject.SetActive(true);
-            //itemNameText.text = "Empty";
             equipImage.gameObject.SetActive(false);
         }
     }

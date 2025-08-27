@@ -70,12 +70,6 @@ public class UIManager : MonoBehaviour
 
     public void ShowMainMenu()
     {
-        // UIMainMenu, UIStatus, UIInventory 객체를 public으로 선언했거나,
-        // [SerializeField]를 사용해 연결했다면 아래와 같이 코드를 수정해야 합니다.
-        // 기존에 제가 제안해드린 코드에서 오타나 누락이 있었을 수 있습니다.
-
-        // UIInventory 스크립트에서 UIMainMenu를 활성화하고,
-        // 자신의 인벤토리 UI를 비활성화해야 합니다.
         uiMainMenu.gameObject.SetActive(true);
         uiStatus.gameObject.SetActive(false); // Status UI도 비활성화
         uiInventory.gameObject.SetActive(false); // Inventory UI도 비활성화
